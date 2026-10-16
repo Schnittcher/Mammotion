@@ -1,0 +1,188 @@
+<style>
+    #mt-root {
+        font-family: inherit;
+        font-size: inherit;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+    #mt-root.offline .pic, #mt-root.offline .info {
+        opacity: 0.6;
+    }
+    #mt-root .pic {
+        flex: 1 1 0;
+        min-height: 3em;
+        position: relative;
+    }
+    #mt-root .pic img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    #mt-root .name {
+        font-weight: 700;
+    }
+    #mt-root .sub {
+        opacity: 0.7;
+        font-size: 0.85em;
+    }
+    #mt-root .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em;
+    }
+    #mt-root .chip {
+        border-radius: 1em;
+        padding: 0.1em 0.7em;
+        font-size: 0.85em;
+        background: color-mix(in srgb, var(--content-color) 15%, transparent);
+    }
+    #mt-root .chip.working { background: color-mix(in srgb, #2e9d4f 30%, transparent); }
+    #mt-root .chip.paused { background: color-mix(in srgb, #e0a010 35%, transparent); }
+    #mt-root .chip.error { background: color-mix(in srgb, #d03030 35%, transparent); }
+    #mt-root .bar {
+        height: 0.5em;
+        border-radius: 0.25em;
+        background: color-mix(in srgb, var(--content-color) 15%, transparent);
+        overflow: hidden;
+    }
+    #mt-root .bar > div {
+        height: 100%;
+        background: var(--accent-color);
+    }
+    #mt-root .bar > div.low { background: #d03030; }
+    #mt-root .buttons {
+        display: flex;
+        gap: 0.4em;
+        flex-wrap: wrap;
+    }
+    #mt-root .buttons.task {
+        flex-wrap: nowrap;
+    }
+    #mt-root .buttons.task button {
+        flex: 0 0 auto;
+    }
+    #mt-root select {
+        font: inherit;
+        color: var(--content-color);
+        background: color-mix(in srgb, var(--content-color) 10%, var(--card-color));
+        border: 0;
+        border-radius: 0.5em;
+        padding: 0.3em 0.5em;
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+    #mt-root button {
+        font: inherit;
+        color: var(--content-color);
+        background: color-mix(in srgb, var(--accent-color) 25%, transparent);
+        border: 0;
+        border-radius: 0.5em;
+        padding: 0.3em 0.8em;
+        cursor: pointer;
+        flex: 1 1 auto;
+        white-space: nowrap;
+    }
+</style>
+<div id="mt-root"></div>
+<script>
+    var mtData = { item: null, texts: {}, image: '' };
+    var mtTask = '';
+
+    //Die Kachel füllt die Höhe des Fensters ohne die Ränder der Visualisierung
+    function mtFit() {
+        var style = getComputedStyle(document.body);
+        var space = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        document.getElementById('mt-root').style.height = (window.innerHeight - space) + 'px';
+    }
+
+    function mtEl(tag, cls, text) {
+        var e = document.createElement(tag);
+        if (cls) { e.className = cls; }
+        if (text !== undefined) { e.textContent = text; }
+        return e;
+    }
+
+    function mtRender() {
+        var root = document.getElementById('mt-root');
+        var item = mtData.item;
+        var t = mtData.texts;
+        root.textContent = '';
+        if (!item) { return; }
+        root.className = item.online ? '' : 'offline';
+
+        var pic = mtEl('div', 'pic');
+        if (mtData.image) {
+            var img = document.createElement('img');
+            img.src = mtData.image;
+            img.alt = item.name;
+            pic.appendChild(img);
+        }
+        root.appendChild(pic);
+
+        var info = mtEl('div', 'info');
+        info.appendChild(mtEl('div', 'name', item.name));
+        if (item.model) { info.appendChild(mtEl('div', 'sub', item.model)); }
+        root.appendChild(info);
+
+        var row = mtEl('div', 'row');
+        if (item.type === 'mower' && item.online) {
+            var cls = item.state === 1 ? 'working' : (item.state === 2 ? 'paused' : (item.state === 7 ? 'error' : ''));
+            row.appendChild(mtEl('span', 'chip ' + cls, item.stateText));
+            row.appendChild(mtEl('span', 'sub', item.battery + ' %' + (item.charging ? ' · ' + t.charging : '')));
+        } else {
+            row.appendChild(mtEl('span', 'chip', item.online ? t.online : t.offline));
+        }
+        root.appendChild(row);
+
+        if (item.type === 'mower' && item.online) {
+            var bar = mtEl('div', 'bar');
+            var fill = mtEl('div', item.battery < 20 ? 'low' : '');
+            fill.style.width = Math.max(0, Math.min(100, item.battery)) + '%';
+            bar.appendChild(fill);
+            root.appendChild(bar);
+            //Erst die Zeile mit der Aufgabe, darunter die Zeile mit der Steuerung
+            if (item.tasks && item.tasks.length) {
+                var taskRow = mtEl('div', 'buttons task');
+                var select = document.createElement('select');
+                item.tasks.forEach(function (name) {
+                    var o = mtEl('option', '', name);
+                    o.value = name;
+                    if (name === (mtTask || item.task)) { o.selected = true; }
+                    select.appendChild(o);
+                });
+                select.onchange = function () { mtTask = select.value; };
+                taskRow.appendChild(select);
+                var go = mtEl('button', '', t.start);
+                go.onclick = function () { requestAction('Task', select.value); };
+                taskRow.appendChild(go);
+                root.appendChild(taskRow);
+            }
+            if (item.actions && item.actions.length) {
+                var buttons = mtEl('div', 'buttons');
+                item.actions.forEach(function (action) {
+                    var b = mtEl('button', '', t.actions[action]);
+                    b.onclick = function () { requestAction('Control', action); };
+                    buttons.appendChild(b);
+                });
+                root.appendChild(buttons);
+            }
+        }
+    }
+
+    //Daten der Instanz. Das Bild kommt nur mit dem ersten Aufruf und bleibt danach erhalten.
+    function handleMessage(message) {
+        var data = JSON.parse(message);
+        if (data.image !== undefined) { mtData.image = data.image; }
+        mtData.item = data.item;
+        mtData.texts = data.texts;
+        mtFit();
+        mtRender();
+    }
+
+    window.addEventListener('resize', mtFit);
+</script>

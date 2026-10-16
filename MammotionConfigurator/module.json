@@ -1,0 +1,16 @@
+{
+    "id": "{09C2A881-D57D-48FD-A154-9E9965BAC62D}",
+    "name": "MammotionConfigurator",
+    "type": 4,
+    "vendor": "Mammotion",
+    "aliases": [],
+    "parentRequirements": [
+        "{33F5BD76-EACE-472E-AC52-C2328AD1E5B3}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{3257C609-57DE-436D-8FD7-F8A4631A02D1}"
+    ],
+    "prefix": "MAMK",
+    "url": "https://deinsmarthome.info"
+}

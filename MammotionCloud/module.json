@@ -1,0 +1,19 @@
+{
+    "id": "{DF97F504-8ADE-4710-B12E-DCA702277C96}",
+    "name": "MammotionCloud",
+    "type": 2,
+    "vendor": "Mammotion",
+    "aliases": [],
+    "parentRequirements": [
+        "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"
+    ],
+    "childRequirements": [
+        "{3257C609-57DE-436D-8FD7-F8A4631A02D1}"
+    ],
+    "implemented": [
+        "{33F5BD76-EACE-472E-AC52-C2328AD1E5B3}",
+        "{5A709184-B602-D394-227F-207611A33BDF}"
+    ],
+    "prefix": "MAMC",
+    "url": "https://deinsmarthome.info"
+}

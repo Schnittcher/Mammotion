@@ -1,0 +1,14 @@
+{
+    "translations": {
+        "de": {
+            "Mowers": "Mäher",
+            "Name": "Name",
+            "Model": "Modell",
+            "State": "Zustand",
+            "Online": "Online",
+            "Offline": "Offline",
+            "RTK stations": "RTK-Stationen",
+            "Devices": "Geräte"
+        }
+    }
+}

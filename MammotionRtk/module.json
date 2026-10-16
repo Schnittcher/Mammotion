@@ -1,0 +1,16 @@
+{
+    "id": "{FC93C45D-FBE1-48E7-84D5-D6351533BD49}",
+    "name": "MammotionRtk",
+    "type": 3,
+    "vendor": "Mammotion",
+    "aliases": [],
+    "parentRequirements": [
+        "{33F5BD76-EACE-472E-AC52-C2328AD1E5B3}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{3257C609-57DE-436D-8FD7-F8A4631A02D1}"
+    ],
+    "prefix": "MAMR",
+    "url": "https://deinsmarthome.info"
+}

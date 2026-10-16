@@ -1,0 +1,21 @@
+{
+    "translations": {
+        "de": {
+            "Device ID": "Geräte-ID",
+            "Device name": "Gerätename",
+            "Polling interval": "Abfrageintervall",
+            "seconds": "Sekunden",
+            "0 switches polling off. Values between 1 and 29 are treated as 30 seconds.": "0 schaltet die Abfrage aus. Werte von 1 bis 29 gelten als 30 Sekunden.",
+            "Update now": "Jetzt aktualisieren",
+            "Show last error messages": "Letzte Fehlermeldungen anzeigen",
+            "RTK station is configured": "RTK-Station ist eingerichtet",
+            "Instance is inactive": "Instanz ist inaktiv",
+            "Device ID is missing": "Geräte-ID fehlt",
+            "Online": "Online",
+            "Product image": "Produktbild",
+            "Offline": "Offline",
+            "Model": "Modell",
+            "Firmware": "Firmware"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "id": "{C8864B25-D486-48C5-89D9-0C031B439055}",
+    "name": "MammotionMower",
+    "type": 3,
+    "vendor": "Mammotion",
+    "aliases": [],
+    "parentRequirements": [
+        "{33F5BD76-EACE-472E-AC52-C2328AD1E5B3}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{3257C609-57DE-436D-8FD7-F8A4631A02D1}"
+    ],
+    "prefix": "MAMM",
+    "url": "https://deinsmarthome.info"
+}
