@@ -10,6 +10,7 @@ Steuert Mammotion-Mähroboter (LUBA und YUKA) über die offizielle Mammotion Ope
 ## Inhaltsverzeichnis
 - [Mammotion](#mammotion)
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
+  - [Screenshots](#screenshots)
   - [1. Voraussetzungen](#1-voraussetzungen)
   - [2. Funktionsumfang](#2-funktionsumfang)
   - [3. Enthaltene Module](#3-enthaltene-module)
@@ -17,6 +18,10 @@ Steuert Mammotion-Mähroboter (LUBA und YUKA) über die offizielle Mammotion Ope
   - [5. Konfiguration in IP-Symcon](#5-konfiguration-in-ip-symcon)
   - [6. Spenden](#6-spenden)
   - [7. Lizenz](#7-lizenz)
+
+## Screenshots
+
+![Kacheln von Mäher und RTK-Station](docs/screenshots/kacheln.png)
 
 ## 1. Voraussetzungen
 
