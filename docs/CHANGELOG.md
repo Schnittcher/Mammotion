@@ -3,6 +3,8 @@
 ## 17.10.2026 - Version 1.0 (Build 2)
 
 ### Fixes
+- "Lädt" gilt jetzt auch, wenn die Cloud bei einem nicht vollen Akku den Ladestatus 1 meldet (Yuka Mini 600).
+- Meldet die Cloud einen unbekannten Zustand, steht der Wert im Debug-Fenster der Instanz.
 - Lehnt die Cloud "Mähen starten" ab (zum Beispiel beim Yuka Mini 600), weist die Warnung jetzt darauf hin, stattdessen eine Aufgabe zu starten.
 
 ## 15.10.2026 - Version 1.0

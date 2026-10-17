@@ -289,17 +289,21 @@ class MammotionMower extends IPSModuleStrict
                 $state = $value;
             }
         }
+        $rawStatus = (string) ($Detail['status'] ?? '');
         if ($state === self::STATE_UNKNOWN) {
-            $this->SendDebug('Status', 'Unknown status from cloud: ' . (string) ($Detail['status'] ?? ''), 0);
+            //Die Doku nennt nicht alle Werte der Cloud: Der Wert steht im Debug-Fenster, damit er sich zuordnen lässt.
+            $this->SendDebug('Status', sprintf('Unknown status "%s" (charge status %s)', $rawStatus, (string) ($Detail['chargeStatus'] ?? '')), 0);
         }
         $this->SetValue('Status', $state);
+        $battery = (int) ($Detail['batteryLevel'] ?? $this->GetValue('Battery'));
         if (isset($Detail['batteryLevel'])) {
-            $this->SetValue('Battery', (int) $Detail['batteryLevel']);
+            $this->SetValue('Battery', $battery);
         }
         if (isset($Detail['chargeStatus'])) {
             //Die Doku kennt nur 0 und 1 ("lädt"). Gemessen bei einem LUBA 2: 0 beim Mähen, 1 am Dock bei 99 bis 100 %, 2 am Dock bei 96 bis 97 %.
-            //Als "lädt" gilt deshalb 2.
-            $this->SetValue('Charging', (int) $Detail['chargeStatus'] === 2);
+            //Als "lädt" gilt 2, und 1 solange der Akku nicht voll ist (so gemeldet bei einem Yuka Mini 600).
+            $chargeStatus = (int) $Detail['chargeStatus'];
+            $this->SetValue('Charging', $chargeStatus === 2 || ($chargeStatus === 1 && $battery < 100));
         }
         $this->SetValue('Model', (string) ($Detail['model'] ?? ''));
         $this->SetValue('Firmware', (string) ($Detail['version'] ?? ''));
