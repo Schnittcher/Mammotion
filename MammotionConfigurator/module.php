@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 class MammotionConfigurator extends IPSModuleStrict
 {
-    private const GUID_CLOUD = '{DF97F504-8ADE-4710-B12E-DCA702277C96}';
     private const GUID_MOWER = '{C8864B25-D486-48C5-89D9-0C031B439055}';
     private const GUID_RTK = '{FC93C45D-FBE1-48E7-84D5-D6351533BD49}';
     private const GUID_TO_PARENT = '{33F5BD76-EACE-472E-AC52-C2328AD1E5B3}';
@@ -16,12 +15,6 @@ class MammotionConfigurator extends IPSModuleStrict
     public function Create(): void
     {
         parent::Create();
-    }
-
-    //Als Verbindung kommt nur die MammotionCloud infrage (ConnectParent gibt es unter Symcon 9 nicht mehr).
-    public function GetCompatibleParents(): string
-    {
-        return json_encode(['type' => 'require', 'moduleIDs' => [self::GUID_CLOUD]]);
     }
 
     public function GetConfigurationForm(): string

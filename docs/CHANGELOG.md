@@ -4,7 +4,7 @@
 
 ### Fixes
 - Mäher und RTK-Station lassen sich wieder anlegen, wenn die Kachel-Konstanten in der Symcon-Umgebung fehlen (Fehler "Undefined constant INSTANCE_VISUALIZATION_TYPE_HTML").
-- Beim Anlegen von Konfigurator und Mäher erscheint keine Warnung zu ConnectParent mehr, die MammotionCloud wird als Verbindung angeboten.
+- Beim Anlegen von Konfigurator und Mäher erscheint keine Warnung zu ConnectParent mehr, und Mäher lassen sich über den Konfigurator anlegen.
 - "Lädt" gilt jetzt auch, wenn die Cloud bei einem nicht vollen Akku den Ladestatus 1 meldet (Yuka Mini 600).
 - Meldet die Cloud einen unbekannten Zustand, steht der Wert im Debug-Fenster der Instanz.
 - Lehnt die Cloud "Mähen starten" ab (zum Beispiel beim Yuka Mini 600), weist die Warnung jetzt darauf hin, stattdessen eine Aufgabe zu starten.

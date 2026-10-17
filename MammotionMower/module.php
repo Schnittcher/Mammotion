@@ -66,12 +66,6 @@ class MammotionMower extends IPSModuleStrict
         $this->RegisterTile();
     }
 
-    //Als Verbindung kommt nur die MammotionCloud infrage (ConnectParent gibt es unter Symcon 9 nicht mehr).
-    public function GetCompatibleParents(): string
-    {
-        return json_encode(['type' => 'require', 'moduleIDs' => [self::GUID_CLOUD]]);
-    }
-
     public function ApplyChanges(): void
     {
         parent::ApplyChanges();
