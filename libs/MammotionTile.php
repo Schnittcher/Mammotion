@@ -16,7 +16,10 @@ trait MammotionTile
 
     private function RegisterTile(): void
     {
-        $this->SetVisualizationType(defined('INSTANCE_VISUALIZATION_TYPE_HTML_FULLSCREEN') ? INSTANCE_VISUALIZATION_TYPE_HTML_FULLSCREEN : INSTANCE_VISUALIZATION_TYPE_HTML);
+        //Die Konstanten sind nicht in jeder Umgebung definiert (gemeldet unter Symcon 9.0: "Undefined constant"). Die Zahlenwerte stehen
+        //in der Doku von SetVisualizationType: 1 = HTML, 2 = HTML auch im Vollbild (ab 9.1).
+        $html = defined('INSTANCE_VISUALIZATION_TYPE_HTML') ? constant('INSTANCE_VISUALIZATION_TYPE_HTML') : 1;
+        $this->SetVisualizationType(defined('INSTANCE_VISUALIZATION_TYPE_HTML_FULLSCREEN') ? constant('INSTANCE_VISUALIZATION_TYPE_HTML_FULLSCREEN') : $html);
     }
 
     //Schickt die aktuellen Werte an geöffnete Kacheln. Das Bild bleibt in der Kachel erhalten und wird nur mitgesendet, wenn es neu ist.
