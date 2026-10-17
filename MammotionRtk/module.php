@@ -12,6 +12,8 @@ class MammotionRtk extends IPSModuleStrict
     use MammotionDevice;
     use MammotionTile;
 
+    private const GUID_CLOUD = '{DF97F504-8ADE-4710-B12E-DCA702277C96}';
+
     private const STATUS_NO_DEVICE = 201;
     private const MIN_INTERVAL = 30;
 
@@ -25,6 +27,12 @@ class MammotionRtk extends IPSModuleStrict
 
         $this->RegisterTimer('PollTimer', 0, 'MAMR_Update($_IPS[\'TARGET\']);');
         $this->RegisterTile();
+    }
+
+    //Als Verbindung kommt nur die MammotionCloud infrage.
+    public function GetCompatibleParents(): string
+    {
+        return json_encode(['type' => 'require', 'moduleIDs' => [self::GUID_CLOUD]]);
     }
 
     public function ApplyChanges(): void

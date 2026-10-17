@@ -63,8 +63,13 @@ class MammotionMower extends IPSModuleStrict
 
         $this->RegisterTimer('PollTimer', 0, 'MAMM_Update($_IPS[\'TARGET\']);');
 
-        $this->ConnectParent(self::GUID_CLOUD);
         $this->RegisterTile();
+    }
+
+    //Als Verbindung kommt nur die MammotionCloud infrage (ConnectParent gibt es unter Symcon 9 nicht mehr).
+    public function GetCompatibleParents(): string
+    {
+        return json_encode(['type' => 'require', 'moduleIDs' => [self::GUID_CLOUD]]);
     }
 
     public function ApplyChanges(): void

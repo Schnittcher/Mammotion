@@ -16,7 +16,12 @@ class MammotionConfigurator extends IPSModuleStrict
     public function Create(): void
     {
         parent::Create();
-        $this->ConnectParent(self::GUID_CLOUD);
+    }
+
+    //Als Verbindung kommt nur die MammotionCloud infrage (ConnectParent gibt es unter Symcon 9 nicht mehr).
+    public function GetCompatibleParents(): string
+    {
+        return json_encode(['type' => 'require', 'moduleIDs' => [self::GUID_CLOUD]]);
     }
 
     public function GetConfigurationForm(): string
