@@ -23,15 +23,16 @@ class MammotionMower extends IPSModuleStrict
 
     //Zustand des Mähers laut Cloud (Feld status), als Zahl abgelegt
     private const STATES = [
-        'Standby'   => 0,
-        'Working'   => 1,
-        'Mowing'    => 1,
-        'Paused'    => 2,
-        'Mapping'   => 3,
-        'Updating'  => 4,
-        'Offline'   => 5,
-        'Returning' => 6,
-        'Abnormal'  => 7,
+        'Standby'     => 0,
+        'Working'     => 1,
+        'Mowing'      => 1,
+        'Paused'      => 2,
+        'TaskPaused'  => 2,
+        'Mapping'     => 3,
+        'Updating'    => 4,
+        'Offline'     => 5,
+        'Returning'   => 6,
+        'Abnormal'    => 7,
     ];
     private const STATE_UNKNOWN = 8;
 
