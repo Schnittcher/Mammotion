@@ -48,7 +48,7 @@ Mobilfunk-Signal | `CellularRssi` | Ganzzahl (dBm) | Signalstärke im Mobilfunkn
 ### 2.2 Steuerung
 Variable | Ident | Typ | Beschreibung
 ------------ | ------------ | ------------ | ----------------
-Steuerung | `Control` | Ganzzahl, steuerbar | Mähen starten (ohne Plan), Pause, Fortsetzen, Stopp, Zur Ladestation, Rückfahrt abbrechen.
+Steuerung | `Control` | Ganzzahl, steuerbar | Mähen starten (ohne Plan), Pause, Fortsetzen, Stopp, Zur Ladestation, Rückfahrt abbrechen. "Mähen starten" nimmt die Cloud bei manchen Modellen nicht an (gemeldet beim Yuka Mini 600, bei einem LUBA 2 startet der Mäher nicht): Dann steht eine Warnung im Meldungsfenster, und die Aufgabe startet über "Aufgabe starten".
 Aufgabe starten | `Task` | Text, steuerbar | Aufgaben aus der Mammotion-App. Die Variable entsteht, sobald die Aufgabenliste einmal geholt wurde (alle 30 Abfragen aktualisiert). Eine Auswahl startet die Aufgabe.
 
 Ein Befehl bestätigt nur die Zustellung an den Mäher. Der neue Zustand wird nach etwa fünf Sekunden abgefragt.

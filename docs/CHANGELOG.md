@@ -1,5 +1,10 @@
 # Changelog
 
+## 17.10.2026 - Version 1.0 (Build 2)
+
+### Fixes
+- Lehnt die Cloud "Mähen starten" ab (zum Beispiel beim Yuka Mini 600), weist die Warnung jetzt darauf hin, stattdessen eine Aufgabe zu starten.
+
 ## 15.10.2026 - Version 1.0
 
 ### Neu

@@ -35,6 +35,7 @@
             "not supported": "vom Gerät nicht unterstützt",
             "No local access configured for this mower.": "Für diesen Mäher ist kein lokaler Zugang eingerichtet.",
             "Online": "Online",
+            "This model may not accept mowing without a task. Start a task instead.": "Dieses Modell nimmt Mähen ohne Aufgabe möglicherweise nicht an. Bitte stattdessen eine Aufgabe starten.",
             "Product image": "Produktbild",
             "Offline": "Offline",
             "Status": "Status",

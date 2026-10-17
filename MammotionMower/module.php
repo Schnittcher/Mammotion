@@ -240,7 +240,12 @@ class MammotionMower extends IPSModuleStrict
         $result = $this->Request(['Function' => 'SendAction', 'Action' => $Action, 'TaskName' => $TaskName]);
         $this->SendDebug('Command', $Action . ' ' . $TaskName . ' -> ' . json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), 0);
         if (!($result['success'] ?? false)) {
-            $this->LogMessage(sprintf('Command %s failed: %s', $Action, (string) ($result['message'] ?? '')), KL_WARNING);
+            $message = sprintf('Command %s failed: %s', $Action, (string) ($result['message'] ?? ''));
+            //Mähen ohne Aufgabe lehnt die Cloud bei manchen Modellen ab (gemeldet beim Yuka Mini 600: "Parameter ist nicht richtig").
+            if ($Action === 'CMD_START') {
+                $message .= '. ' . $this->Translate('This model may not accept mowing without a task. Start a task instead.');
+            }
+            $this->LogMessage($message, KL_WARNING);
             return false;
         }
         //Der Mäher meldet den neuen Zustand erst nach einigen Sekunden.
