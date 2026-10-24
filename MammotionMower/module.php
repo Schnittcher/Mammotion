@@ -290,6 +290,8 @@ class MammotionMower extends IPSModuleStrict
             }
         }
         $rawStatus = (string) ($Detail['status'] ?? '');
+        //Jede Abfrage steht im Debug-Fenster, damit sich Zustandswechsel (zum Beispiel die Ankunft an der Ladestation) nachvollziehen lassen.
+        $this->SendDebug('Update', sprintf('status=%s charge=%s battery=%s online=%d', $rawStatus, (string) ($Detail['chargeStatus'] ?? ''), (string) ($Detail['batteryLevel'] ?? ''), $online ? 1 : 0), 0);
         if ($state === self::STATE_UNKNOWN) {
             //Die Doku nennt nicht alle Werte der Cloud: Der Wert steht im Debug-Fenster, damit er sich zuordnen lässt.
             $this->SendDebug('Status', sprintf('Unknown status "%s" (charge status %s)', $rawStatus, (string) ($Detail['chargeStatus'] ?? '')), 0);

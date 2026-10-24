@@ -2,6 +2,9 @@
 
 ## 17.10.2026 - Version 1.0 (Build 2)
 
+### Neu
+- Das Debug-Fenster des Mähers zeigt bei jeder Abfrage Zustand, Ladestatus und Akku.
+
 ### Fixes
 - Der Zustand "TaskPaused" (Yuka Mini 600) wird als "Pausiert" angezeigt.
 - Mäher und RTK-Station lassen sich wieder anlegen, wenn die Kachel-Konstanten in der Symcon-Umgebung fehlen (Fehler "Undefined constant INSTANCE_VISUALIZATION_TYPE_HTML").
