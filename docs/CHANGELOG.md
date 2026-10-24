@@ -1,6 +1,6 @@
 # Changelog
 
-## 17.10.2026 - Version 1.0 (Build 2)
+## 25.10.2026 - Version 1.0.1
 
 ### Neu
 - Das Debug-Fenster des Mähers zeigt bei jeder Abfrage Zustand, Ladestatus und Akku.
