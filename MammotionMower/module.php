@@ -297,15 +297,13 @@ class MammotionMower extends IPSModuleStrict
             $this->SendDebug('Status', sprintf('Unknown status "%s" (charge status %s)', $rawStatus, (string) ($Detail['chargeStatus'] ?? '')), 0);
         }
         $this->SetValue('Status', $state);
-        $battery = (int) ($Detail['batteryLevel'] ?? $this->GetValue('Battery'));
         if (isset($Detail['batteryLevel'])) {
-            $this->SetValue('Battery', $battery);
+            $this->SetValue('Battery', (int) $Detail['batteryLevel']);
         }
         if (isset($Detail['chargeStatus'])) {
-            //Die Doku kennt nur 0 und 1 ("lädt"). Gemessen bei einem LUBA 2: 0 beim Mähen, 1 am Dock bei 99 bis 100 %, 2 am Dock bei 96 bis 97 %.
-            //Als "lädt" gilt 2, und 1 solange der Akku nicht voll ist (so gemeldet bei einem Yuka Mini 600).
-            $chargeStatus = (int) $Detail['chargeStatus'];
-            $this->SetValue('Charging', $chargeStatus === 2 || ($chargeStatus === 1 && $battery < 100));
+            //Die Doku kennt 0 (lädt nicht) und 1 (lädt). Gemessen wurde zusätzlich 2 (LUBA 2 am Dock bei 96 bis 97 %), 1 auch bei vollem Akku
+            //am Dock (LUBA 2 und Yuka Mini 600). Als "lädt" gilt deshalb jeder Wert über 0, so wie die Cloud ihn meldet.
+            $this->SetValue('Charging', (int) $Detail['chargeStatus'] > 0);
         }
         $this->SetValue('Model', (string) ($Detail['model'] ?? ''));
         $this->SetValue('Firmware', (string) ($Detail['version'] ?? ''));

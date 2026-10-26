@@ -36,7 +36,7 @@ Variable | Ident | Typ | Beschreibung
 Online | `Online` | Ja/Nein | Mäher ist mit der Cloud verbunden.
 Status | `Status` | Ganzzahl | Bereit, Mäht, Pausiert, Kartierung, Update, Offline, Fährt zur Ladestation, Fehler, Unbekannt.
 Akku | `Battery` | Ganzzahl (%) | Ladestand.
-Lädt | `Charging` | Ja/Nein | Mäher lädt. Die Cloud meldet dafür bei einem LUBA 2 den Wert 2, bei einem Yuka Mini 600 den Wert 1 bei nicht vollem Akku, die Doku kennt nur 0 und 1. Bei vollem Akku gilt der Wert 1 als "lädt nicht".
+Lädt | `Charging` | Ja/Nein | Mäher lädt. Das gilt, solange die Cloud einen Ladestatus über 0 meldet (laut Doku 1 = lädt, bei einem LUBA 2 wurde auch 2 gemessen). Der Rohwert steht im Debug-Fenster der Instanz (`charge=`).
 Modell | `Model` | Text | Modellbezeichnung.
 Firmware | `Firmware` | Text | Firmware-Version.
 Produktbild | `Image` | Medienobjekt (Bild) | Produktbild des Mähers, lokal abgelegt.
