@@ -1,5 +1,10 @@
 # Changelog
 
+## 26.10.2026 - Version 1.0.2
+
+### Fixes
+- "Lädt" gilt, solange die Cloud einen Ladestatus über 0 meldet, auch bei vollem Akku am Dock (Yuka Mini 600, LUBA 2).
+
 ## 25.10.2026 - Version 1.0.1
 
 ### Neu
@@ -9,7 +14,6 @@
 - Der Zustand "TaskPaused" (Yuka Mini 600) wird als "Pausiert" angezeigt.
 - Mäher und RTK-Station lassen sich wieder anlegen, wenn die Kachel-Konstanten in der Symcon-Umgebung fehlen (Fehler "Undefined constant INSTANCE_VISUALIZATION_TYPE_HTML").
 - Beim Anlegen von Konfigurator und Mäher erscheint keine Warnung zu ConnectParent mehr, und Mäher lassen sich über den Konfigurator anlegen.
-- "Lädt" gilt, solange die Cloud einen Ladestatus über 0 meldet, auch bei vollem Akku am Dock (Yuka Mini 600, LUBA 2).
 - Meldet die Cloud einen unbekannten Zustand, steht der Wert im Debug-Fenster der Instanz.
 - Lehnt die Cloud "Mähen starten" ab (zum Beispiel beim Yuka Mini 600), weist die Warnung jetzt darauf hin, stattdessen eine Aufgabe zu starten.
 
