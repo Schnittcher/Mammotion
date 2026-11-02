@@ -4,6 +4,7 @@
 
 ### Fixes
 - "Lädt" gilt, solange die Cloud einen Ladestatus über 0 meldet, auch bei vollem Akku am Dock (Yuka Mini 600, LUBA 2).
+- Der Dokumentationslink der Instanzen führt jetzt zur Dokumentation auf deinsmarthome.info.
 
 ## 25.10.2026 - Version 1.0.1
 
